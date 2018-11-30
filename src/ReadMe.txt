@@ -6,9 +6,9 @@ Auteur...: Romain POITEVIN, Maxime COUSSEAU
 Date...................: 01/12/2018
 
 ==================================== ARBORESCENCE ============================================================================================================================
-L’archive comprend un répertoire src/ contenant tous le code de l’application (découper en 4 packages), le ReadMe, le Makfile et la javadoc
-(lancez l'index dans le répertoire JavaDoc).
-Packages : 
+L’archive comprend un répertoire src/ contenant tous le code de l’application (découper en 4 packages), le ReadMe, le Makfile et le fichier configDoc
+(fichier de configuration permettant de générer la documentation Doxygen; A ne pas supprimer).
+Packages :
 	-> Classe
 	-> Contrat
 	-> Ihm 
@@ -40,6 +40,10 @@ lancer le serveur et d’effacer tous les fichiers .class une fois que l’appli
 6/ Ouvrez un terminal, entrez la commande make admin pour lancer un admin (tapez de nouveau cette commande si vous voulez en lancer d’autres)
 
 7/ Dans un des terminal, entrez la commande make clean pour effacer les fichiers .class
+
+8/ Dans un terminal, entrez la commande make doc pour générer la documentation Doxygen de l'application.
+   Une fois générer rendez-vous dans le dossier documentation (à la racine du répertoire src/) et lancez
+   le fichier index.html.
 
 =================================== UTILISATION ================================================================================================================================
 

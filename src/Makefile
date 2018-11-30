@@ -21,6 +21,9 @@ admin:
 admin2:
 	@java Lanceur/Admin 127.0.0.1
 
+doc:
+	@Doxygen configDoc
+
 clean:
 	@rm Ihm/Admin/*.class 
 	@rm Ihm/Client/*.class 
