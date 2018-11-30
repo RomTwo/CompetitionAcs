@@ -51,40 +51,46 @@ public interface Contrat extends Remote {
     /**
      * Un utilisateur suit la compétition, on l'ajoute dans la liste des viewers de la compétition
      *
-     * @param c  Client
-     * @param id id de la compéttion
+     * @param cli    Client
+     * @param name   identifiant du client
+     * @param uniqId identifiant unique du client
+     * @param id     id de la compéttion
      * @throws RemoteException exception
      */
-    void addViewer(ContratClient c, int id) throws RemoteException;
+    void addViewer(ContratClient cli, String name, String uniqId, int id) throws RemoteException;
 
     /**
      * Un utilisateur arrête de suivre la compétition, on le supprime de la liste des viewers de la compétition
      *
-     * @param c  Client
-     * @param id id de la compéttion
+     * @param cli    Client
+     * @param name   identifiant du client
+     * @param uniqId identifiant unique du client
+     * @param id     id de la compéttion
      * @throws RemoteException exception
      */
-    void removeViewer(ContratClient c, int id) throws RemoteException;
+    void removeViewer(ContratClient cli, String name, String uniqId, int id) throws RemoteException;
 
     /**
      * Voter pour un joueur
      *
      * @param userName identifiants de l'utilisateur
+     * @param uniqId   identifiant unique du client
      * @param compId   id de la compéttion
      * @param p
      * @throws RemoteException exception
      */
-    void vote(String userName, int compId, Player p) throws RemoteException;
+    void vote(String userName, String uniqId, int compId, Player p) throws RemoteException;
 
     /**
      * Parier sur une compétition
      *
      * @param userName identifiants de l'utilisateur
+     * @param uniqId   identifiant unique du client
      * @param compId   id de la compéttion
      * @param pari
      * @throws RemoteException exception
      */
-    void paris(String userName, int compId, String pari) throws RemoteException;
+    void paris(String userName, String uniqId, int compId, String pari) throws RemoteException;
 
     /**
      * Ajouter un évènement
@@ -120,5 +126,6 @@ public interface Contrat extends Remote {
      * @throws RemoteException exception
      */
     void finish(int compId) throws RemoteException;
+
 
 }

@@ -4,13 +4,38 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Classe Previous
+ */
 public class Previous extends JButton implements ActionListener {
 
+    /**
+     * Titre
+     */
     private static final String TITRE = "Précédent";
+
+    /**
+     * Page principale
+     */
     private Main frame;
+
+    /**
+     * Frame parent
+     */
     private FrameComp parent;
+
+    /**
+     * Thread lancé dans le parent
+     */
     private Thread th;
 
+    /**
+     * Constructeur
+     *
+     * @param frame  page principale
+     * @param parent frame parent
+     * @param th     thread lancé dans le parent
+     */
     public Previous(Main frame, FrameComp parent, Thread th) {
         super();
         this.frame = frame;

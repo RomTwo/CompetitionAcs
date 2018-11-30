@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Classe Player
  */
 public class Player implements Serializable {
-
+    private static final long serialVersionUID = 1;
     /**
      * Id du joueur
      */

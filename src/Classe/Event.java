@@ -8,7 +8,7 @@ import java.util.Date;
  * Class Event
  */
 public class Event implements Serializable {
-
+    private static final long serialVersionUID = 1;
     /**
      * Texte de l'évènement
      */
@@ -16,6 +16,7 @@ public class Event implements Serializable {
 
     /**
      * Constructeur
+     *
      * @param texte texte
      */
     public Event(String texte) {
@@ -29,6 +30,7 @@ public class Event implements Serializable {
 
     /**
      * Retourne le texte de l'évènement
+     *
      * @return texte
      */
     public String getText() {

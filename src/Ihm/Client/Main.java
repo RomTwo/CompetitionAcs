@@ -6,18 +6,58 @@ import javax.swing.*;
 import java.awt.*;
 import java.rmi.RemoteException;
 
+/**
+ * Classe Main
+ */
 public class Main extends JFrame {
 
+    /**
+     * Titre
+     */
     private static final String TITLE = "Compétitions";
+
+    /**
+     * Titre
+     */
     private JLabel title;
+
+    /**
+     * Permet de se déconnecter
+     */
     private Logout logout;
+
+    /**
+     *
+     */
     private CompChoice comp;
+
+    /**
+     * Username
+     */
     private String userName;
+
+    /**
+     * Conteneur
+     */
     private JPanel panLogout;
 
+    /**
+     * Identifiant unique de l'utilisateur
+     */
+    private String userId;
+
+    /**
+     * Constructeur
+     *
+     * @param objDist  objet distant
+     * @param userId   identifiant unique
+     * @param userName username
+     * @throws RemoteException
+     */
     public Main(Contrat objDist, String userId, String userName) throws RemoteException {
         super();
         this.userName = userName;
+        this.userId = userId;
 
         this.title = new JLabel(TITLE);
         this.title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -39,9 +79,21 @@ public class Main extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Retourne le username
+     *
+     * @return String
+     */
     public String getUserName() {
         return userName;
     }
 
-
+    /**
+     * Retourne l'identifiant unique
+     *
+     * @return String
+     */
+    public String getUserId() {
+        return userId;
+    }
 }

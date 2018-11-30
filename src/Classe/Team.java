@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Class Team
  */
 public class Team implements Serializable {
-
+    private static final long serialVersionUID = 1;
     /**
      * Id de l'équipe
      */
@@ -94,8 +94,6 @@ public class Team implements Serializable {
         ArrayList<Player> winners = new ArrayList<>();
         int res = 0;
         for (Player p : this.getPlayers()) {
-            System.out.println("nb votes = " + p.getVoteUser().size());
-            System.out.println("res" + res);
             if (p.getVoteUser().size() > res) {
                 winners.add(p);
                 res = p.getVoteUser().size();

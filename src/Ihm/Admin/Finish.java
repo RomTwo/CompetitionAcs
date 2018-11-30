@@ -7,12 +7,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 
+/**
+ * Classe Finish
+ */
 public class Finish extends JButton implements ActionListener {
 
-    private static final String FINISH = "FINISH";
+    /**
+     * Titre
+     */
+    private static final String FINISH = "Terminer le match";
+
+    /**
+     * Objet distant
+     */
     private Contrat objDist;
+
+    /**
+     * Id de la compétition courante
+     */
     private int compId;
 
+    /**
+     * Constructeur
+     *
+     * @param objDist objet distant
+     * @param compId  id de la compétition courante
+     */
     public Finish(Contrat objDist, int compId) {
         super();
         this.objDist = objDist;

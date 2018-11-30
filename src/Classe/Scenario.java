@@ -2,6 +2,9 @@ package Classe;
 
 import java.util.ArrayList;
 
+/**
+ * Classe scénario
+ */
 public class Scenario {
 
     public Scenario() {

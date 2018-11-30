@@ -18,6 +18,9 @@ client3:
 admin:
 	@java Lanceur/Admin 127.0.0.1
 
+admin2:
+	@java Lanceur/Admin 127.0.0.1
+
 clean:
 	@rm Ihm/Admin/*.class 
 	@rm Ihm/Client/*.class 

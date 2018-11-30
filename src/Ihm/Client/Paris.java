@@ -5,14 +5,40 @@ import Contrat.Contrat;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe Paris
+ */
 public class Paris extends JPanel {
 
+    /**
+     * Titre
+     */
     private JLabel title;
+
+    /**
+     * Liste de paris
+     */
     private JComboBox<String> list;
+
+    /**
+     * Envoyer le paris
+     */
     private SendParis sendParis;
+
+    /**
+     * Conteneur
+     */
     private Box box;
 
-    public Paris(Contrat objDist, int compId, String userName) {
+    /**
+     * Constructeur
+     *
+     * @param objDist  objet distant
+     * @param compId   id de la compétition
+     * @param userName username
+     * @param uniqueId identifiant unique de l'utilisateur
+     */
+    public Paris(Contrat objDist, int compId, String userName, String uniqueId) {
         super();
 
         this.title = new JLabel("Paris");
@@ -23,7 +49,7 @@ public class Paris extends JPanel {
         this.list.addItem("1");
         this.list.addItem("N");
         this.list.addItem("2");
-        this.sendParis = new SendParis(compId, this.list, objDist, userName);
+        this.sendParis = new SendParis(compId, this.list, objDist, userName, uniqueId);
         this.sendParis.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.box = Box.createVerticalBox();

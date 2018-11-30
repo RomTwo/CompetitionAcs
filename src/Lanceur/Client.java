@@ -30,18 +30,32 @@ public class Client extends UnicastRemoteObject implements ContratClient, Runnab
     private int compId;
 
     /**
+     * Identifiant de l'utilisateur
+     */
+    private String name;
+
+    /**
+     * Id unique du client
+     */
+    private String uniqueId;
+
+    /**
      * Constructeur
      *
-     * @param o      objet distant
-     * @param frame  fenêtre principale de l'application
-     * @param compId id de la compétition suivie
+     * @param o        objet distant
+     * @param frame    fenêtre principale de l'application
+     * @param compId   id de la compétition suivie
+     * @param name     identifiant de l'utilisateur
+     * @param uniqueId identifiant unique de l'utilisateur
      * @throws RemoteException
      */
-    public Client(Contrat o, FrameComp frame, int compId) throws RemoteException {
+    public Client(Contrat o, FrameComp frame, int compId, String name, String uniqueId) throws RemoteException {
         Client.objDist = o;
         this.content = frame;
         this.compId = compId;
-        objDist.addViewer(this, compId);
+        this.name = name;
+        this.uniqueId = uniqueId;
+        objDist.addViewer(this, this.name, this.uniqueId, this.compId);
     }
 
     @Override
@@ -55,7 +69,7 @@ public class Client extends UnicastRemoteObject implements ContratClient, Runnab
             //Le client fait ce qu'il désire
         }
         try {
-            objDist.removeViewer(this, this.compId);
+            objDist.removeViewer(this, this.name, this.uniqueId, this.compId);
             System.out.println("Intterupt.....");
         } catch (RemoteException e) {
             e.printStackTrace();

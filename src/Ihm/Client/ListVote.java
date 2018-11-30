@@ -9,12 +9,33 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.util.Objects;
 
+/**
+ * Classe ListVote
+ */
 public class ListVote extends JComboBox<String> implements ActionListener {
 
+    /**
+     * Joueur choisi
+     */
     private Player choice = null;
+
+    /**
+     * Objet distant
+     */
     private Contrat objDist;
+
+    /**
+     * Id de la compétition
+     */
     private int compId;
 
+    /**
+     * Constructeur
+     *
+     * @param objDist objet distant
+     * @param compId  id de la compétition
+     * @throws RemoteException exception
+     */
     public ListVote(Contrat objDist, int compId) throws RemoteException {
         super();
         this.addActionListener(this);
@@ -31,6 +52,13 @@ public class ListVote extends JComboBox<String> implements ActionListener {
 
     }
 
+    /**
+     * Retourne un joueur rechercher en fonction du nom passé en paramètre
+     *
+     * @param name paramètre de recherche
+     * @return un joueur
+     * @throws RemoteException exception
+     */
     public Player getByName(String name) throws RemoteException {
         for (Player p1 : this.objDist.getCompById(this.compId).getTeam1().getPlayers()) {
             String t = p1.getSurname() + " " + p1.getName();
@@ -48,10 +76,20 @@ public class ListVote extends JComboBox<String> implements ActionListener {
         return null;
     }
 
+    /**
+     * Joueur choisi
+     *
+     * @return Player
+     */
     public Player getChoice() {
         return choice;
     }
 
+    /**
+     * Modification du choix
+     *
+     * @param choice nouveau joueur choisi
+     */
     public void setChoice(Player choice) {
         this.choice = choice;
     }
