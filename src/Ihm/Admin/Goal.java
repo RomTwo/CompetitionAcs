@@ -9,18 +9,18 @@ import java.rmi.RemoteException;
 
 public class Goal extends JButton implements ActionListener {
 
-    private static final String GOAL = "GOAL";
+    private static final String GOAL = "GOAL FOR ";
     private Contrat objDist;
     private int compId;
     private int teamId;
 
-    public Goal(Contrat objDist, int compId, int teamId) {
+    public Goal(Contrat objDist, int compId, int teamId, String teamName) {
         super();
         this.objDist = objDist;
         this.compId = compId;
         this.teamId = teamId;
 
-        this.setText(GOAL);
+        this.setText(GOAL + teamName);
         this.addActionListener(this);
     }
 

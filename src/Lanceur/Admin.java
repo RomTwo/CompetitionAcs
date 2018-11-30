@@ -5,6 +5,9 @@ import Ihm.Admin.Admini;
 
 import java.rmi.Naming;
 
+/**
+ * Classe Admin
+ */
 public class Admin {
     public static void main(String[] args) {
         try {

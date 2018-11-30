@@ -8,21 +8,76 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Classe Compéttion
+ */
 public class Competition implements Serializable {
+
+    /**
+     * Id la compétition
+     */
     private int id;
+
+    /**
+     * Titre de la compéttition
+     */
     private String title;
+
+    /**
+     * Type de sport
+     */
     private String type;
+
+    /**
+     * Equipe à domiciles
+     */
     private Team team1;
+
+    /**
+     * Equipe à l'extérieur
+     */
     private Team team2;
+
+    /**
+     * Liste d'utilisateur qui suivent la compéttion
+     */
     private ArrayList<ContratClient> viewers = new ArrayList<>();
     private HashMap<ContratClient, String> views = new HashMap<>();
+
+    /**
+     * Liste d'évènement concernant la compétition
+     */
     private ArrayList<Event> events = new ArrayList<>();
+
+    /**
+     * Liste de votes
+     */
     private ArrayList<String> votes = new ArrayList<>();
+
+    /**
+     * Liste de paris
+     */
     private HashMap<String, String> paris = new HashMap<>();
+
+    /**
+     * Savoir si un admin commente déjà la compétition
+     */
     private boolean hasAdmin = false;
+
+    /**
+     * Savoir si la compétition est terminé
+     */
     private boolean finish = false;
 
-
+    /**
+     * Constructeur
+     *
+     * @param id    id
+     * @param title titre
+     * @param t     type
+     * @param t1    équipe à domicile
+     * @param t2    équipe à l'extérieur
+     */
     public Competition(int id, String title, String t, Team t1, Team t2) {
         this.id = id;
         this.title = title;
@@ -31,22 +86,47 @@ public class Competition implements Serializable {
         this.team2 = t2;
     }
 
+    /**
+     * Retourne l'id
+     *
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Retourne le titre
+     *
+     * @return titre
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Retourne le type
+     *
+     * @return type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Retourne l'équipe à domicile
+     *
+     * @return équipe à domicile
+     */
     public Team getTeam1() {
         return team1;
     }
 
+    /**
+     * Retourne l'équipe extérieur
+     *
+     * @return équipe extérieur
+     */
     public Team getTeam2() {
         return team2;
     }
@@ -91,10 +171,6 @@ public class Competition implements Serializable {
         this.finish = true;
     }
 
-    public ArrayList<String> getVotes() {
-        return votes;
-    }
-
     public void addVote(String user) {
         this.votes.add(user);
     }
@@ -108,11 +184,11 @@ public class Competition implements Serializable {
         return false;
     }
 
-    public ArrayList<String> winnersVotes() {
+    public ArrayList<Player> winnersVotes() {
 
         int team1 = 0;
         int team2 = 0;
-        ArrayList<String> winners = new ArrayList<>();
+        ArrayList<Player> winners = new ArrayList<>();
 
         if (this.getTeam1().bestPlayers().size() > 0) {
             team1 = this.getTeam1().bestPlayers().get(0).getVoteUser().size();
@@ -122,26 +198,19 @@ public class Competition implements Serializable {
         }
 
         if (team1 > team2) {
-            for (Player p : this.getTeam1().bestPlayers()) {
-                winners.addAll(p.getVoteUser());
-            }
+            winners.addAll(this.getTeam1().bestPlayers());
         } else if (team1 < team2) {
-            for (Player p : this.getTeam2().bestPlayers()) {
-                winners.addAll(p.getVoteUser());
-            }
+            winners.addAll(this.getTeam2().bestPlayers());
         } else {
             ArrayList<Player> tmp = new ArrayList<>();
             tmp.addAll(this.getTeam1().bestPlayers());
             tmp.addAll(this.getTeam2().bestPlayers());
 
-            for (Player p : tmp) {
-                winners.addAll(p.getVoteUser());
-            }
+            winners.addAll(tmp);
         }
 
         return winners;
     }
-
 
     public boolean hasParis(String name) {
         for (Map.Entry<String, String> map : this.paris.entrySet()) {
@@ -188,6 +257,7 @@ public class Competition implements Serializable {
                 }
             }
         }
+        System.out.println(winners.size());
         return winners;
     }
 }

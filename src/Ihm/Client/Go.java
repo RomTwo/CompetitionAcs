@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 
 public class Go extends JButton implements ActionListener {
 
-    private static final String TITLE = "Go";
+    private static final String TITLE = "Suivre";
     private int compId;
     private Contrat objDist;
     private Main frame;

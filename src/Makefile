@@ -12,6 +12,9 @@ client1:
 client2:
 	@java Lanceur/Client 127.0.0.1 Mathieu
 
+client3:
+	@java Lanceur/Client 127.0.0.1 Didier
+
 admin:
 	@java Lanceur/Admin 127.0.0.1
 

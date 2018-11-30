@@ -10,7 +10,7 @@ public class Vote extends JPanel {
 
     private JLabel title;
     private ListVote list;
-    private Send send;
+    private SendVote sendVote;
     private Box box;
 
     public Vote(Contrat objDist, int compId, String userName) throws RemoteException {
@@ -20,11 +20,12 @@ public class Vote extends JPanel {
         this.title = new JLabel("Vote");
         this.title.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.list = new ListVote(objDist, compId);
-        this.send = new Send(compId, this.list, objDist, userName);
+        this.sendVote = new SendVote(compId, this.list, objDist, userName);
+        this.sendVote.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.box.add(this.title);
         this.box.add(this.list);
-        this.box.add(this.send);
+        this.box.add(this.sendVote);
         this.add(this.box);
 
     }

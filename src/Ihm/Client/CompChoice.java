@@ -8,12 +8,16 @@ import java.rmi.RemoteException;
 
 public class CompChoice extends JPanel {
 
+    private Box box;
+
     public CompChoice(Contrat objDist, Main parent) throws RemoteException {
         super();
 
+        this.box = Box.createVerticalBox();
         for (Competition c : objDist.getCompetitions()) {
-            this.add(constructPanel(c, objDist, parent));
+            this.box.add(constructPanel(c, objDist, parent));
         }
+        this.add(this.box);
     }
 
     private JPanel constructPanel(Competition comp, Contrat objDist, Main frame) {

@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 
 public class Logout extends JButton implements ActionListener {
 
-    private static final String TITLE = "Logout";
+    private static final String TITLE = "Quitter";
     private Contrat objDist;
     private String id;
 

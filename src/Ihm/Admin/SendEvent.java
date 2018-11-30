@@ -21,7 +21,7 @@ public class SendEvent extends JButton implements ActionListener {
         this.compId = compId;
         this.content = content;
 
-        this.setText("Send");
+        this.setText("SendVote");
         this.setEnabled(false);
         this.addActionListener(this);
     }

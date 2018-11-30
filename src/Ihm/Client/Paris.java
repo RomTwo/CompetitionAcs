@@ -1,36 +1,40 @@
 package Ihm.Client;
 
+import Contrat.Contrat;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Paris extends JPanel {
 
     private JLabel title;
+    private JComboBox<String> list;
+    private SendParis sendParis;
     private Box box;
-    private Box box2;
 
-    public Paris() {
+    public Paris(Contrat objDist, int compId, String userName) {
         super();
 
-        this.box = Box.createVerticalBox();
-        this.box2 = Box.createHorizontalBox();
         this.title = new JLabel("Paris");
         this.title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.list = new JComboBox<>();
+        this.list.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.list.addItem("-- Selectionnez un pari --");
+        this.list.addItem("1");
+        this.list.addItem("N");
+        this.list.addItem("2");
+        this.sendParis = new SendParis(compId, this.list, objDist, userName);
+        this.sendParis.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        ButtonGroup group = new ButtonGroup();
-        JRadioButton br1 = new JRadioButton("1", false);
-        JRadioButton br2 = new JRadioButton("N", false);
-        JRadioButton br3 = new JRadioButton("2", false);
+        this.box = Box.createVerticalBox();
 
-        group.add(br1);
-        group.add(br2);
-        group.add(br3);
-
-        this.box2.add(br1);
-        this.box2.add(br2);
-        this.box2.add(br3);
         this.box.add(this.title);
+        this.box.add(new JPanel());
+        this.box.add(this.list);
+        this.box.add(this.sendParis);
+
         this.add(this.box);
 
     }
+
 }

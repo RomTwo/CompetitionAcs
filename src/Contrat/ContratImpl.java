@@ -9,6 +9,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
+/**
+ * Classe ContratImpl
+ */
 public class ContratImpl extends UnicastRemoteObject implements Contrat {
 
     private static final long serialVersionUID = 1;
@@ -56,15 +59,15 @@ public class ContratImpl extends UnicastRemoteObject implements Contrat {
 
     @Override
     public void addEvent(Event e, int id) throws RemoteException {
-        for (Competition c : this.competitions) {
-            if (c.getId() == id) {
-                c.addEvent(e);
-                for (ContratClient cli : c.getViewers()) {
-                    System.out.println(e);
-                    cli.msg(e.getText());
-                }
+        Competition c = getCompById(id);
+        if (c != null) {
+            c.addEvent(e);
+            for (ContratClient cli : c.getViewers()) {
+                System.out.println(e);
+                cli.msg(e.getText());
             }
         }
+
     }
 
     @Override
@@ -74,7 +77,7 @@ public class ContratImpl extends UnicastRemoteObject implements Contrat {
             if (c.getId() == id) {
                 c.addViewers(cli);
                 if (c.getEvents().size() == 0) {
-                    c.getViewers().get(c.getViewers().size() - 1).msg("Aucuns events...");
+                    c.getViewers().get(c.getViewers().size() - 1).msg("La compétition n'est pas encore commencé...");
                 } else {
                     int i = 0;
                     while (i < c.getEvents().size()) {
@@ -122,7 +125,7 @@ public class ContratImpl extends UnicastRemoteObject implements Contrat {
             c.addParis(userName, pari);
         } else {
             System.out.println("Update pari...");
-            c.addParis(userName, pari);
+            c.updateParis(userName, pari);
         }
     }
 
@@ -158,6 +161,19 @@ public class ContratImpl extends UnicastRemoteObject implements Contrat {
         Competition c = getCompById(compId);
         c.finish();
         addEvent(event, c.getId());
+
+        // Résultats vote
+        String res;
+        if (c.winnersParis().size() < 1) {
+            res = "Aucuns vote sur cette compétition (aucun homme du match élu)";
+        } else {
+            res = "Le/les joueur(s) élu(s) meilleur(s) homme du match : ";
+            for (Player p : c.winnersVotes()) {
+                res += p.getSurname() + " " + p.getName();
+            }
+        }
+
+        addEvent(new Event(res), compId);
     }
 
     private boolean nameExist(String name) {
@@ -169,18 +185,17 @@ public class ContratImpl extends UnicastRemoteObject implements Contrat {
         return false;
     }
 
-
     private void addVote(String userName, Competition c, Player player) throws RemoteException {
         boolean found = false;
         for (Player p : c.getTeam1().getPlayers()) {
-            if (p == player) {
+            if (p.getId() == player.getId()) {
                 p.addVote(userName);
                 found = true;
             }
         }
         if (!found) {
             for (Player p : c.getTeam2().getPlayers()) {
-                if (p == player) {
+                if (p.getId() == player.getId()) {
                     p.addVote(userName);
                 }
             }
@@ -209,88 +224,6 @@ public class ContratImpl extends UnicastRemoteObject implements Contrat {
         }
 
     }
-
-    /*private boolean hasVote(String name, int compId) throws RemoteException {
-        Competition c = getCompById(compId);
-        if (c != null) {
-            for (Map.Entry<String, Player> v : c.getListVote().entrySet()) {
-                if (name.equals(v.getKey())) {
-                    return true;
-                }
-            }
-            c.addVote(name, null);
-        }
-        return false;
-    }
-
-    private void addVote(String userName, int compId, Player player) throws RemoteException {
-        Competition c = getCompById(compId);
-        boolean found = false;
-        for (Player p : c.getTeam1().getPlayers()) {
-            if (p == player) {
-                p.addVote();
-                found = true;
-            }
-        }
-        if (!found) {
-            for (Player p : c.getTeam2().getPlayers()) {
-                if (p == player) {
-                    p.addVote();
-                }
-            }
-        }
-        c.updateVote(userName, player);
-    }
-
-    private void removeVote(String userName, int compId) throws RemoteException {
-        Competition c = getCompById(compId);
-        Player old = c.getVote(userName);
-
-        boolean found = false;
-        for (Player p : c.getTeam1().getPlayers()) {
-            if (p == old) {
-                p.removeVote();
-                found = true;
-            }
-        }
-        if (!found) {
-            for (Player p : c.getTeam2().getPlayers()) {
-                if (p == old) {
-                    p.removeVote();
-                }
-            }
-        }
-
-    }*/
-
-
-    /*private boolean hasVote(String name, int compId) throws RemoteException {
-        Competition c = getCompById(compId);
-        if (c != null) {
-            for (String v : c.getVotes()) {
-                System.out.println("okok...");
-                if (Objects.equals(v, name)) {
-                    return true;
-                }
-            }
-            c.addVote(name); // Ajout du vote si il n'a pas voté pour cette compétition
-        }
-        return false;
-    }*/
-
-        /*@Override
-    public void vote(String userName, int compId, Player player) throws RemoteException {
-        if (!hasVote(userName, compId)) {
-            System.out.println("ADD VOTE...");
-            addVote(userName, compId, player);
-        } else {
-            System.out.println("UPDATE VOTE...");
-            //Suppression de l'ancien vote
-            removeVote(userName, compId);
-            //Ajout du nouveau vote
-            addVote(userName, compId, player);
-        }
-    }*/
 
 }
 

@@ -4,6 +4,9 @@ import Contrat.ContratImpl;
 
 import java.rmi.Naming;
 
+/**
+ * Classe Server
+ */
 public class Server {
     public static void main(String[] args) {
         ContratImpl objServ = null;

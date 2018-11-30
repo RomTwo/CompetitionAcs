@@ -28,6 +28,7 @@ public class Admini extends JFrame {
 
         this.setTitle("Compétitions");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.pack();
 

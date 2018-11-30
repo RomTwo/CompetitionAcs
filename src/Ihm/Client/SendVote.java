@@ -7,23 +7,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 
-public class Send extends JButton implements ActionListener {
+public class SendVote extends JButton implements ActionListener {
 
     private int compId;
     private ListVote choice;
     private Contrat objDist;
     private String userName;
 
-    public Send(int compId, ListVote choice, Contrat objDist, String userName) {
+    public SendVote(int compId, ListVote choice, Contrat objDist, String userName) {
         super();
 
         this.userName = userName;
-
-        this.setText("Send");
-        this.addActionListener(this);
         this.compId = compId;
         this.choice = choice;
         this.objDist = objDist;
+
+        this.setText("Envoyer");
+        this.addActionListener(this);
     }
 
     @Override
@@ -40,6 +40,8 @@ public class Send extends JButton implements ActionListener {
             } catch (RemoteException e1) {
                 e1.printStackTrace();
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Veuillez selectionnez un joueur", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

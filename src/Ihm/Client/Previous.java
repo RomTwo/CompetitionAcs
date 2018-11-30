@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class Previous extends JButton implements ActionListener {
 
-    private static final String TITRE = "Previous";
+    private static final String TITRE = "Précédent";
     private Main frame;
     private FrameComp parent;
     private Thread th;

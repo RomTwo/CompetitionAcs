@@ -9,12 +9,34 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ * Classe Client
+ */
 public class Client extends UnicastRemoteObject implements ContratClient, Runnable {
 
+    /**
+     * Objet distant
+     */
     private static Contrat objDist;
+
+    /**
+     * Fenêtre principale de l'application
+     */
     private FrameComp content;
+
+    /**
+     * Id la compétition suivie
+     */
     private int compId;
 
+    /**
+     * Constructeur
+     *
+     * @param o      objet distant
+     * @param frame  fenêtre principale de l'application
+     * @param compId id de la compétition suivie
+     * @throws RemoteException
+     */
     public Client(Contrat o, FrameComp frame, int compId) throws RemoteException {
         Client.objDist = o;
         this.content = frame;
